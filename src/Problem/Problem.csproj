@@ -39,6 +39,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProblemContent.cs" />
     <Compile Include="ProblemDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

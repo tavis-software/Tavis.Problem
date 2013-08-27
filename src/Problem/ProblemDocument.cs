@@ -21,6 +21,10 @@ namespace Tavis
 
         public Dictionary<string, JToken> Extensions { get; set; }
 
+        public ProblemDocument()
+        {
+            Extensions = new Dictionary<string, JToken>();
+        }
 
         public void Save(System.IO.MemoryStream stream)
         {
@@ -101,16 +105,16 @@ namespace Tavis
                         doc.ProblemType = new Uri((string)jProp.Value, UriKind.RelativeOrAbsolute);
                         break;
                     case "title":
-                        doc.Title = (string)jProp["title"];
+                        doc.Title = (string)jProp.Value;
                         break;
                     case "httpStatus":
-                        doc.StatusCode = (HttpStatusCode)(int)jObject["httpStatus"];
+                        doc.StatusCode = (HttpStatusCode)(int)jProp.Value;
                         break;
                     case "detail":
-                        doc.Detail = (string)jObject["detail"];
+                        doc.Detail = (string)jProp.Value;
                         break;
                     case "problemInstance":
-                        doc.ProblemInstance = new Uri((string) jObject["problemInstance"]);
+                        doc.ProblemInstance = new Uri((string) jProp.Value);
                         break;
                     default:
                         doc.Extensions.Add(jProp.Name,jProp.Value);                
@@ -123,6 +127,20 @@ namespace Tavis
             if (string.IsNullOrEmpty(doc.Title)) throw new ArgumentException("Missing title property");
 
             return doc;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var newProblem = (ProblemDocument) obj;
+            var equal = (newProblem.ProblemType.OriginalString == this.ProblemType.OriginalString) &&
+                        (newProblem.Title == Title) &&
+                        (newProblem.Detail == Detail) &&
+                        (newProblem.StatusCode == StatusCode) &&
+                        (newProblem.ProblemInstance.OriginalString == ProblemInstance.OriginalString) &&
+                        newProblem.Extensions.SequenceEqual(Extensions);
+
+            
+            return equal;
         }
     }
 

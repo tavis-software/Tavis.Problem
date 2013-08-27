@@ -33,7 +33,8 @@ namespace Tavis
 
         protected override bool TryComputeLength(out long length)
         {
-            throw new NotImplementedException();
+            length = _problemStream.Length;
+            return true;
         }
 
     

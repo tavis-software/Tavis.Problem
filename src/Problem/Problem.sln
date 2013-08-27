@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\readme.md = ..\..\readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemTests", "..\ProblemTests\ProblemTests.csproj", "{D205D484-D025-45FD-B4CA-64B5D936E3CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,10 @@ Global
 		{F79D75CD-978A-4021-8B24-56FD1E21CD17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F79D75CD-978A-4021-8B24-56FD1E21CD17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F79D75CD-978A-4021-8B24-56FD1E21CD17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D205D484-D025-45FD-B4CA-64B5D936E3CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D205D484-D025-45FD-B4CA-64B5D936E3CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D205D484-D025-45FD-B4CA-64B5D936E3CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D205D484-D025-45FD-B4CA-64B5D936E3CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

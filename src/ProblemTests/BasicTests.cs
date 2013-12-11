@@ -65,7 +65,7 @@ namespace ProblemTests
             {
                 ProblemType = new Uri("http://example.org"),
                 Title = "Houston we have a problem",
-                StatusCode = HttpStatusCode.BadGateway,
+                StatusCode = (HttpStatusCode?)428,
                 ProblemInstance = new Uri("http://foo")
             };
 

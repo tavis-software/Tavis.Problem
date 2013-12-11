@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,10 +8,18 @@ using System.Threading.Tasks;
 
 namespace Tavis
 {
+    /// <summary>
+    /// Convert ProblemDocument instance into a HttpContent object for sending across the wire
+    /// </summary>
     public class ProblemContent : HttpContent
     {
         private readonly MemoryStream _problemStream;
-        // Outbound
+        
+
+        /// <summary>
+        /// Create a instance of a ProblemContent object from a ProblemDocument
+        /// </summary>
+        /// <param name="problemDocument"></param>
         public ProblemContent(ProblemDocument problemDocument)
         {
             // Problem documents tend to be small so we should serialize them immediately so that we can return the length of the stream.
@@ -38,19 +45,5 @@ namespace Tavis
         }
 
     
-    }
-
-
-    public static class HttpContentProblemExtensions
-    {
-            public static Task<ProblemDocument> ReadAsProblemAsync(this HttpContent content)
-            {
-                if (content.Headers.ContentType.MediaType.ToLowerInvariant() != "application/api-problem+json")
-                {
-                    throw new ArgumentException("Cannot process HttpContent with media type " + content.Headers.ContentType.MediaType);
-                }
-
-                return content.ReadAsStreamAsync().ContinueWith(t => ProblemDocument.Parse(t.Result));
-            }
     }
 }

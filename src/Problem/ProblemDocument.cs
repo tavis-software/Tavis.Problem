@@ -10,6 +10,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Tavis
 {
+    /// <summary>
+    /// Object model for application/problem+json document
+    /// </summary>
     public class ProblemDocument
     {
         public Uri ProblemType { get; set; }
@@ -21,11 +24,18 @@ namespace Tavis
 
         public Dictionary<string, JToken> Extensions { get; set; }
 
+        /// <summary>
+        /// Create a new problem documents
+        /// </summary>
         public ProblemDocument()
         {
             Extensions = new Dictionary<string, JToken>();
         }
 
+        /// <summary>
+        /// Serialize current problem document as JSON representation
+        /// </summary>
+        /// <param name="stream"></param>
         public void Save(System.IO.MemoryStream stream)
         {
             var sb = new StringBuilder();
@@ -45,12 +55,12 @@ namespace Tavis
         {
             jsonWriter.WriteStartObject();
 
-            WriteProperty(jsonWriter, "problemType", ProblemType.OriginalString);
+            WriteProperty(jsonWriter, "type", ProblemType.OriginalString);
             WriteProperty(jsonWriter, "title", Title);
 
             if (StatusCode != null)
             {
-                jsonWriter.WritePropertyName("httpStatus");
+                jsonWriter.WritePropertyName("status");
                 jsonWriter.WriteValue((int)StatusCode);
             }
 
@@ -61,7 +71,7 @@ namespace Tavis
 
             if (ProblemInstance != null)
             {
-                WriteProperty(jsonWriter, "problemInstance", ProblemInstance.OriginalString);
+                WriteProperty(jsonWriter, "instance", ProblemInstance.OriginalString);
             }
 
             foreach (var extension in Extensions)
@@ -79,19 +89,34 @@ namespace Tavis
             jsonWriter.WriteValue(value);
         }
 
+        /// <summary>
+        /// Create problem document instance from stream of json text formatted as per media type specification
+        /// </summary>
+        /// <param name="jsonStream"></param>
+        /// <returns></returns>
         public static ProblemDocument Parse(Stream jsonStream)
         {
             var sr = new StreamReader(jsonStream);
             return Parse(sr.ReadToEnd());
         }
 
-          public static ProblemDocument Parse(string jsonString)
+        /// <summary>
+        /// Create problem document instance from string of json text
+        /// </summary>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public static ProblemDocument Parse(string jsonString)
         {
             var jDoc = JObject.Parse(jsonString);
             return Parse(jDoc);
         }
 
 
+        /// <summary>
+        ///  Create problem document instance from JObject
+        /// </summary>
+        /// <param name="jObject"></param>
+        /// <returns></returns>
         public static ProblemDocument Parse(JObject jObject)
         {
             var doc = new ProblemDocument();
@@ -101,19 +126,19 @@ namespace Tavis
 
                 switch (jProp.Name)
                 {
-                    case "problemType":
+                    case "type":
                         doc.ProblemType = new Uri((string)jProp.Value, UriKind.RelativeOrAbsolute);
                         break;
                     case "title":
                         doc.Title = (string)jProp.Value;
                         break;
-                    case "httpStatus":
+                    case "status":
                         doc.StatusCode = (HttpStatusCode)(int)jProp.Value;
                         break;
                     case "detail":
                         doc.Detail = (string)jProp.Value;
                         break;
-                    case "problemInstance":
+                    case "instance":
                         doc.ProblemInstance = new Uri((string) jProp.Value);
                         break;
                     default:
@@ -129,6 +154,11 @@ namespace Tavis
             return doc;
         }
 
+        /// <summary>
+        /// Do a deep compare of two problem documents
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             var newProblem = (ProblemDocument) obj;

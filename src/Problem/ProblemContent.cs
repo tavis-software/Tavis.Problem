@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +28,7 @@ namespace Tavis
             _problemStream = new MemoryStream();
             problemDocument.Save(_problemStream);
             _problemStream.Position = 0;
+            Headers.ContentType = new MediaTypeHeaderValue("application/problem+json");
         }
 
 

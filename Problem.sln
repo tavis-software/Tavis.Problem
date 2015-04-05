@@ -1,12 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem", "src\Problem\Problem.csproj", "{F79D75CD-978A-4021-8B24-56FD1E21CD17}"
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{357005B5-51CA-4A5A-9785-C4529DED5840}"
 	ProjectSection(SolutionItems) = preProject
+		build\Build.proj = build\Build.proj
 		readme.md = readme.md
+		ReleaseNotes.md = ReleaseNotes.md
+		build\Tavis.Problem.nuspec = build\Tavis.Problem.nuspec
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem", "src\Problem\Problem.csproj", "{F79D75CD-978A-4021-8B24-56FD1E21CD17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemTests", "src\ProblemTests\ProblemTests.csproj", "{D205D484-D025-45FD-B4CA-64B5D936E3CB}"
 EndProject

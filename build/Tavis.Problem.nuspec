@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Tavis.Problem</id>
-        <version>0.9.6-beta</version>
+        <version>0.9.5-beta2</version>
         <authors>Darrel Miller</authors>
         <owners>Darrel Miller</owners>
         <projectUrl>https://github.com/tavis-software/Tavis.Problem</projectUrl>

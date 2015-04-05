@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Tavis.Home</id>
+        <version>0.9.5-beta</version>
+        <authors>Darrel Miller</authors>
+        <owners>Darrel Miller</owners>
+        <projectUrl>https://github.com/tavis-software/Tavis.Problem</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Implementation of a application/problem+json</description>
+        <releaseNotes><![CDATA[
+            For full release notes see https://github.com/tavis-software/Tavis.Problem/blob/master/ReleaseNotes.md
+            ]]></releaseNotes>
+        <dependencies>
+            <dependency id="Microsoft.Net.Http" version="2.2.18" />
+            <dependency id="Newtonsoft.Json" version="5.0.8" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\artifacts\Problem\lib\**\Tavis.Problem.dll" target="lib" />
+    </files>
+</package>

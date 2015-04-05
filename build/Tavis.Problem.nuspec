@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Tavis.Home</id>
-        <version>0.9.5-beta</version>
+        <id>Tavis.Problem</id>
+        <version>0.9.6-beta</version>
         <authors>Darrel Miller</authors>
         <owners>Darrel Miller</owners>
         <projectUrl>https://github.com/tavis-software/Tavis.Problem</projectUrl>

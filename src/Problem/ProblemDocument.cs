@@ -36,7 +36,7 @@ namespace Tavis
         /// Serialize current problem document as JSON representation
         /// </summary>
         /// <param name="stream"></param>
-        public void Save(System.IO.MemoryStream stream)
+        public void Save(System.IO.Stream stream)
         {
             var sb = new StringBuilder();
             var sw = new StringWriter(sb);

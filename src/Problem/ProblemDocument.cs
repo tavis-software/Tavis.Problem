@@ -16,20 +16,23 @@ namespace Tavis
     public class ProblemDocument
     {
         public Uri ProblemType { get; set; }
+
         public string Title { get; set; }
 
         public HttpStatusCode? StatusCode { get; set; }
+
         public string Detail { get; set; }
+
         public Uri ProblemInstance { get; set; }
 
-        public Dictionary<string, JToken> Extensions { get; set; }
+        public Dictionary<string, dynamic> Extensions { get; set; }
 
         /// <summary>
         /// Create a new problem documents
         /// </summary>
         public ProblemDocument()
         {
-            Extensions = new Dictionary<string, JToken>();
+            Extensions = new Dictionary<string, dynamic>();
         }
 
         /// <summary>
@@ -40,7 +43,7 @@ namespace Tavis
         {
             var sb = new StringBuilder();
             var sw = new StringWriter(sb);
-            var jsonWriter = new JsonTextWriter(sw) {Formatting = Formatting.Indented};
+            var jsonWriter = new JsonTextWriter(sw) { Formatting = Formatting.Indented };
 
             WriteProblem(jsonWriter);
 
@@ -122,7 +125,8 @@ namespace Tavis
             var doc = new ProblemDocument();
 
 
-            foreach (var jProp in jObject.Properties()){
+            foreach (var jProp in jObject.Properties())
+            {
 
                 switch (jProp.Name)
                 {
@@ -139,17 +143,19 @@ namespace Tavis
                         doc.Detail = (string)jProp.Value;
                         break;
                     case "instance":
-                        doc.ProblemInstance = new Uri((string) jProp.Value);
+                        doc.ProblemInstance = new Uri((string)jProp.Value);
                         break;
                     default:
-                        doc.Extensions.Add(jProp.Name,jProp.Value);                
+                        doc.Extensions.Add(jProp.Name, jProp.Value);                
                         break;
                 }
     
             }
 
-            if (doc.ProblemType == null) throw new ArgumentException("Missing problemType property");
-            if (string.IsNullOrEmpty(doc.Title)) throw new ArgumentException("Missing title property");
+            if (doc.ProblemType == null)
+                throw new ArgumentException("Missing problemType property");
+            if (string.IsNullOrEmpty(doc.Title))
+                throw new ArgumentException("Missing title property");
 
             return doc;
         }
@@ -161,7 +167,7 @@ namespace Tavis
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var newProblem = (ProblemDocument) obj;
+            var newProblem = (ProblemDocument)obj;
             var equal = (newProblem.ProblemType.OriginalString == this.ProblemType.OriginalString) &&
                         (newProblem.Title == Title) &&
                         (newProblem.Detail == Detail) &&

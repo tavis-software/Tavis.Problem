@@ -1,6 +1,6 @@
 # Tavis.Problem
 
-This library provides .Net support for the media type `application/http-problem+json` https://tools.ietf.org/html/draft-ietf-appsawg-http-problem-00
+This library provides .Net support for the media type `application/problem+json` defined in [RFC 7807](https://tools.ietf.org/html/rfc7807)
 
 
 

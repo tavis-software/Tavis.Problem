@@ -139,7 +139,7 @@ namespace Tavis
                         doc.Detail = (string)jProp.Value;
                         break;
                     case "instance":
-                        doc.ProblemInstance = new Uri((string) jProp.Value);
+                        doc.ProblemInstance = new Uri((string) jProp.Value,UriKind.RelativeOrAbsolute);
                         break;
                     default:
                         doc.Extensions.Add(jProp.Name,jProp.Value);                

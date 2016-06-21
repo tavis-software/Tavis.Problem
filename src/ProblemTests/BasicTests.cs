@@ -29,6 +29,21 @@ namespace ProblemTests
 
         }
 
+        [Fact]
+        public void CreateAProblemWithARelativeInstanceUrl()
+        {
+
+            var problem = new ProblemDocument
+            {
+                ProblemType = new Uri("http://example.org"),
+                Title = "Houston we have a problem",
+                StatusCode = HttpStatusCode.BadGateway,
+                ProblemInstance = new Uri("foo")
+            };
+
+            Assert.NotNull(problem);
+            Assert.Equal(problem.ProblemInstance.OriginalString,"foo");
+        }
 
         [Fact]
         public void RoundTripAProblem()

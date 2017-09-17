@@ -153,6 +153,7 @@ ClientBin/
 .idea
 .vscode
 tools/
+package/
 
 # RIA/Silverlight projects
 Generated_Code/

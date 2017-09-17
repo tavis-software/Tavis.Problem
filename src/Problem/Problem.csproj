@@ -1,6 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>Tavis.Problem</AssemblyName>
+    <PackageId>Tavis.Problem</PackageId>
+    <PackageTags>problem+json;problem</PackageTags>
+    <title>Tavis.Problem</title>
+    <VersionPrefix>2.0.0-beta</VersionPrefix>
+    <authors>Darrel Miller</authors>
+    <owners>Darrel Miller</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Implementation of a application/problem+json</description>
+    <PackageProjectUrl>https://github.com/tavis-software/Tavis.Problem</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/tavis-software/Tavis.Problem/blob/master/License.txt</PackageLicenseUrl>
+    <releaseNotes><![CDATA[
+            For full release notes see https://github.com/tavis-software/Tavis.Problem/blob/master/ReleaseNotes.md
+            ]]></releaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />

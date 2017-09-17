@@ -15,7 +15,6 @@ namespace Tavis
     public class ProblemContent : HttpContent
     {
         private readonly MemoryStream _problemStream;
-        
 
         /// <summary>
         /// Create a instance of a ProblemContent object from a ProblemDocument
@@ -31,7 +30,6 @@ namespace Tavis
             Headers.ContentType = new MediaTypeHeaderValue("application/problem+json");
         }
 
-
         protected override Task SerializeToStreamAsync(Stream stream, TransportContext context)
         {
             _problemStream.CopyTo(stream);  // Because this is likely a small document there is no advantage to switching threads to do this copy.
@@ -44,8 +42,6 @@ namespace Tavis
         {
             length = _problemStream.Length;
             return true;
-        }
-
-    
+        }    
     }
 }

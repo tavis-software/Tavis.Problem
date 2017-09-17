@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -64,7 +63,7 @@ namespace Tavis
                 jsonWriter.WriteValue((int)StatusCode);
             }
 
-            if (!String.IsNullOrEmpty(Detail))
+            if (!string.IsNullOrEmpty(Detail))
             {
                 WriteProperty(jsonWriter, "detail", Detail);
             }
@@ -111,7 +110,6 @@ namespace Tavis
             return Parse(jDoc);
         }
 
-
         /// <summary>
         ///  Create problem document instance from JObject
         /// </summary>
@@ -145,7 +143,6 @@ namespace Tavis
                         doc.Extensions.Add(jProp.Name,jProp.Value);                
                         break;
                 }
-    
             }
 
             if (doc.ProblemType == null) throw new ArgumentException("Missing problemType property");
@@ -168,11 +165,8 @@ namespace Tavis
                         (newProblem.StatusCode == StatusCode) &&
                         (newProblem.ProblemInstance.OriginalString == ProblemInstance.OriginalString) &&
                         newProblem.Extensions.SequenceEqual(Extensions);
-
             
             return equal;
         }
-    }
-
-    
+    }   
 }

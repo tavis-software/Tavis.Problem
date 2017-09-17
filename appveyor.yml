@@ -1,13 +1,5 @@
-version: 0.9.5.{build}
-branches:
-  only:
-  - master
-before_build:
-- nuget restore
-build:
-  project: build\build.proj
-  verbosity: normal
+version: 1.0.{build}
+image: Visual Studio 2017
+build_script:
+- cmd: PowerShell -Version 2.0 .\build.cmd
 test: off
-artifacts:
-- path: artifacts\*.nupkg
-  name: Nuget

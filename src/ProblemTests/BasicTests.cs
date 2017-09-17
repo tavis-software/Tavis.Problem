@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using Newtonsoft.Json.Linq;
 using Tavis;
 using Xunit;
@@ -16,7 +13,6 @@ namespace ProblemTests
         [Fact]
         public void CreateAProblem()
         {
-
             var problem = new ProblemDocument
             {
                 ProblemType = new Uri("http://example.org"),
@@ -26,29 +22,26 @@ namespace ProblemTests
             };
 
             Assert.NotNull(problem);
-
         }
 
         [Fact]
         public void CreateAProblemWithARelativeInstanceUrl()
         {
-
             var problem = new ProblemDocument
             {
                 ProblemType = new Uri("http://example.org"),
                 Title = "Houston we have a problem",
                 StatusCode = HttpStatusCode.BadGateway,
-                ProblemInstance = new Uri("foo")
+                ProblemInstance = new Uri("foo", UriKind.Relative)
             };
 
             Assert.NotNull(problem);
-            Assert.Equal(problem.ProblemInstance.OriginalString,"foo");
+            Assert.Equal(problem.ProblemInstance.OriginalString, "foo");
         }
 
         [Fact]
         public void RoundTripAProblem()
         {
-
             var problem = new ProblemDocument
             {
                 ProblemType = new Uri("http://example.org"),
@@ -57,7 +50,7 @@ namespace ProblemTests
                 ProblemInstance = new Uri("http://foo")
             };
 
-            problem.Extensions.Add("bar",new JValue("100"));
+            problem.Extensions.Add("bar", new JValue("100"));
 
             var ms = new MemoryStream();
 
@@ -66,21 +59,19 @@ namespace ProblemTests
             ms.Position = 0;
 
             var problem2 = ProblemDocument.Parse(ms);
-            
+
             Assert.Equal(problem, problem2);
-            
         }
 
 
         [Fact]
         public void ReturnAProblem()
         {
-
             var problem = new ProblemDocument
             {
                 ProblemType = new Uri("http://example.org"),
                 Title = "Houston we have a problem",
-                StatusCode = (HttpStatusCode?)428,
+                StatusCode = (HttpStatusCode?) 428,
                 ProblemInstance = new Uri("http://foo")
             };
 
@@ -91,12 +82,9 @@ namespace ProblemTests
                 Content = new ProblemContent(problem)
             };
 
-
             var problemString = response.Content.ReadAsStringAsync().Result;
 
             Assert.NotEmpty(problemString);
-
         }
-
     }
 }

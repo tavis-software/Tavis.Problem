@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Tavis;
 using Xunit;
@@ -55,6 +56,30 @@ namespace ProblemTests
             var ms = new MemoryStream();
 
             problem.Save(ms);
+
+            ms.Position = 0;
+
+            var problem2 = ProblemDocument.Parse(ms);
+
+            Assert.Equal(problem, problem2);
+        }
+
+        [Fact]
+        public async Task RoundTripAProblemAsync()
+        {
+            var problem = new ProblemDocument
+            {
+                ProblemType = new Uri("http://example.org"),
+                Title = "Houston we have a problem",
+                StatusCode = HttpStatusCode.BadGateway,
+                ProblemInstance = new Uri("http://foo")
+            };
+
+            problem.Extensions.Add("bar", new JValue("100"));
+
+            var ms = new MemoryStream();
+
+            await problem.SaveAsync(ms);
 
             ms.Position = 0;
 

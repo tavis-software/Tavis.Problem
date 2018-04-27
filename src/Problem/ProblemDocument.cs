@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -16,11 +17,9 @@ namespace Tavis
     {
         public Uri ProblemType { get; set; }
         public string Title { get; set; }
-
         public HttpStatusCode? StatusCode { get; set; }
         public string Detail { get; set; }
         public Uri ProblemInstance { get; set; }
-
         public Dictionary<string, JToken> Extensions { get; set; }
 
         /// <summary>
@@ -47,7 +46,24 @@ namespace Tavis
             stw.Write(sb.ToString());
             stw.Flush();
             jsonWriter.Close();
+        }
 
+        /// <summary>
+        /// Serialize current problem document as JSON representation
+        /// </summary>
+        /// <param name="stream"></param>
+        public async Task SaveAsync(System.IO.Stream stream)
+        {
+            var sb = new StringBuilder();
+            var sw = new StringWriter(sb);
+            var jsonWriter = new JsonTextWriter(sw) {Formatting = Formatting.Indented};
+
+            WriteProblem(jsonWriter);
+
+            var stw = new StreamWriter(stream);
+            await stw.WriteAsync(sb.ToString());
+            stw.Flush();
+            jsonWriter.Close();
         }
 
         private void WriteProblem(JsonWriter jsonWriter)
@@ -118,7 +134,6 @@ namespace Tavis
         public static ProblemDocument Parse(JObject jObject)
         {
             var doc = new ProblemDocument();
-
 
             foreach (var jProp in jObject.Properties()){
 

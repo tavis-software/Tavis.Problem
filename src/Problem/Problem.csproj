@@ -5,7 +5,7 @@
     <PackageId>Tavis.Problem</PackageId>
     <PackageTags>problem+json;problem</PackageTags>
     <title>Tavis.Problem</title>
-    <Version>2.0.0-beta</Version>
+    <Version>2.0.0</Version>
     <authors>Darrel Miller</authors>
     <owners>Darrel Miller</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
